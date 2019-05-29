@@ -8,6 +8,7 @@ use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class Handler extends ExceptionHandler
 {
@@ -50,53 +51,44 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
-        if ($request->is('*api/*')) {
-            if ($exception instanceof MethodNotAllowedHttpException) {
-                return response()->json([
+        // if ($request->is('*api/*')) {
+        if ($exception instanceof MethodNotAllowedHttpException) {
+            return response()->json([
                 'status' => false,
                 'message' => $exception->getMessage(),
                 'data' => [],
             ], $exception->getStatusCode());
-                return parent::render($request, $exception);
-            }
-
-            if ($exception instanceof NotFoundHttpException) {
-                return response()->json([
-                'status' => false,
-                'message' => $exception->getMessage(),
-                'data' => [],
-            ], $exception->getStatusCode());
-                return parent::render($request, $exception);
-            }
-
-            if ($exception instanceof ValidationException) {
-                return response()->json([
-                'status' => false,
-                'message' => $exception->getMessage(),
-                'data' => [],
-            ], $exception->getStatusCode());
-                return parent::render($request, $exception);
-            }
-
-            //check the type of the exception you are interested at
-            if ($exception instanceof ErrorException) {
-                return response()->json([
-                'status' => false,
-                'message' => $exception->getMessage(),
-                'data' => [],
-            ], $exception->getStatusCode());
-                return parent::render($request, $exception);
-            }
-
-            if ($exception instanceof UnauthorizedHttpException) {
-                return response()->json([
-                'status' => false,
-                'message' => $exception->getMessage(),
-                'data' => [],
-            ], $exception->getStatusCode());
-                return parent::render($request, $exception);
-            }
+            return parent::render($request, $exception);
         }
+
+
+        if ($exception instanceof NotFoundHttpException) {
+            return response()->json([
+                'status' => false,
+                'message' => $exception->getMessage(),
+                'data' => [],
+            ], $exception->getStatusCode());
+            return parent::render($request, $exception);
+        }
+
+        if ($exception instanceof ModelNotFoundException) {
+            return response()->json([
+                'status' => 'error',
+                'message' => $exception->getMessage(),
+                'data' => [],
+            ], 400);
+            return parent::render($request, $exception);
+        }
+
+        if ($exception instanceof UnauthorizedHttpException) {
+            return response()->json([
+                'status' => false,
+                'message' => $exception->getMessage(),
+                'data' => [],
+            ], $exception->getStatusCode());
+            return parent::render($request, $exception);
+        }
+        // }
 
         return parent::render($request, $exception);
     }

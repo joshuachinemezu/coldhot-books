@@ -17,8 +17,10 @@ use Illuminate\Http\Request;
 //     return $request->user();
 // });
 
-Route::group(['namespace' => 'API/v1', 'prefix' => 'v1'], function () {
+Route::group(['namespace' => 'API\v1', 'prefix' => 'v1'], function () {
     Route::resources([
-            'books' 		=> 'BookController',
-        ]);
+        'books' 		=> 'BookController',
+    ]);
 });
+
+Route::get('/external-books/{name}', 'ExternalBookController@show');

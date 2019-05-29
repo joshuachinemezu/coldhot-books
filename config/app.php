@@ -56,6 +56,9 @@ return [
 
     'asset_url' => env('ASSET_URL', null),
 
+    'ice_fire_url' => 'https://www.anapioficeandfire.com/api/books',
+
+
     /*
     |--------------------------------------------------------------------------
     | Application Timezone
