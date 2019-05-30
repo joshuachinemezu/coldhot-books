@@ -50,6 +50,7 @@ $ composer install
 ### Run tests
 
 To ensure all units of the application is working
+
 `$ ./vendor/bin/phpunit`
 
 ### Run the application
