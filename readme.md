@@ -64,7 +64,7 @@ https://www.getpostman.com/collections/5ea9192afdfa81e1ded4
 
 -   [Create Book](http://127.0.0.1:8000/api/v1/books) - POST - http://127.0.0.1:8000/api/v1/books
 
--   [Get External Books from Ice Fire Books](http://127.0.0.1:8000/api/external-books/A%20Game%20of%20Thrones) - GET - http://127.0.0.1:8000/api/external-books/A%20Game%20of%20Thrones
+-   [Get External Books from Ice Fire Books](http://127.0.0.1:8000/api/external-books/A Game of Thrones) - GET - http://127.0.0.1:8000/api/external-books/A Game of Thrones
 
 -   [List all Books](http://127.0.0.1:8000/api/v1/books) - GET- http://127.0.0.1:8000/api/v1/books
 
