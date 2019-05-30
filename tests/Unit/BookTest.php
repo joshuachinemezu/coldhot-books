@@ -23,7 +23,10 @@ class BookTest extends TestCase
         $response->assertStatus(201);
         $response->assertJson(['status_code' => 201]);
         $response->assertJson(['status' => "success"]);
-        $response->assertJson(['data' => $data]);
+        $response->assertJson(['data' => [
+                'book' => $data
+            ]
+        ]);
     }
 
     public function testGettingAllBooks()

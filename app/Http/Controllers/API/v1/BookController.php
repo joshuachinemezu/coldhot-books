@@ -24,7 +24,7 @@ class BookController extends Controller
         }
 
 
-        return JSON(CODE_SUCCESS, $books, "Sale Created Successfully");
+        return JSON(CODE_SUCCESS, $books);
     }
 
     /**
@@ -70,7 +70,7 @@ class BookController extends Controller
             return JSON(CODE_BAD_REQUEST, ['errors' => $e]);
         }
 
-        return JSON(CODE_CREATE_SUCCESS, $book);
+        return JSON(CODE_CREATE_SUCCESS, ['book' => $book]);
     }
 
     /**
@@ -81,7 +81,7 @@ class BookController extends Controller
      */
     public function show(Book $book)
     {
-        return JSON(CODE_SUCCESS, $book, "Sale Created Successfully");
+        return JSON(CODE_SUCCESS, $book);
     }
 
     /**
