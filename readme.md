@@ -49,7 +49,7 @@ $ composer install
 
 ### Run tests
 
-To ensure all units of the application is working
+To ensure all units of the application are working
 
 `$ ./vendor/bin/phpunit`
 
