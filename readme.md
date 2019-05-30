@@ -47,7 +47,7 @@ $ composer install
 
     `$ php artisan migrate`
 
-### Run the application
+### Run tests
 
 To ensure all units of the application is working
 `$ ./vendor/bin/phpunit`
