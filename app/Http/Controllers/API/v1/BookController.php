@@ -18,7 +18,6 @@ class BookController extends Controller
     {
         $books = Book::all();
 
-        $authors = [];
         foreach ($books as  $book) {
             $writers = explode(',', $book->authors);
             $book->authors = $writers;
@@ -80,11 +79,9 @@ class BookController extends Controller
      * @param  \App\Book  $book
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request)
+    public function show(Book $book)
     {
-        $books = Book::all();
-
-        return JSON(CODE_SUCCESS, $books, "Sale Created Successfully");
+        return JSON(CODE_SUCCESS, $book, "Sale Created Successfully");
     }
 
     /**
@@ -94,19 +91,11 @@ class BookController extends Controller
      * @param  \App\Book  $book
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Book $book)
     {
-        // Find or fail, Exceptions handler has been configured to handle 404 errors in an elegant manner
-        $book = Book::findorfail($id);
-
-        $book->name = $request->name;
-        $book->isbn = $request->isbn;
-        $book->authors = $request->authors;
-        $book->country = $request->country;
-        $book->number_of_pages = $request->number_of_pages;
-        $book->publisher = $request->publisher;
-        $book->release_date = $request->release_date;
-        $book->save();
+        $book->update(
+            $request->only(['name', 'isbn', 'authors', 'country', 'number_of_pages', 'publisher', 'release_date'])
+        );
 
         return JSON(CODE_SUCCESS, $book, "The book $book->name was updated successfully");
     }
@@ -117,11 +106,8 @@ class BookController extends Controller
      * @param  \App\Book  $book
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Book $book)
     {
-        // Find or fail, Exceptions handler has been configured to handle 404 errors in an elegant manner
-        $book = Book::findorfail($id);
-
         $book->delete();
 
         return JSON(CODE_REMOVE_SUCCESS, [], "The book $book->name was deleted successfully");
