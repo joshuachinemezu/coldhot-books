@@ -68,6 +68,8 @@ https://www.getpostman.com/collections/5ea9192afdfa81e1ded4
 
 -   [List all Books](http://127.0.0.1:8000/api/v1/books) - GET- http://127.0.0.1:8000/api/v1/books
 
+-   [Search for a Book By Name, Country, Publisher, Release Date](http://127.0.0.1:8000/api/v1/books/Germany) - GET- http://127.0.0.1:8000/api/v1/books/Germany
+
 -   [Get a Particular Book](http://127.0.0.1:8000/api/v1/books/:book_id) - GET- http://127.0.0.1:8000/api/v1/books/:book_id
 
 -   [Update a Particular Book](http://127.0.0.1:8000/api/v1/books/:book_id) - PATCH/PUT- http://127.0.0.1:8000/api/v1/books/:book_id

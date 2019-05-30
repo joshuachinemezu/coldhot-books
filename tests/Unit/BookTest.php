@@ -36,6 +36,13 @@ class BookTest extends TestCase
         $response->assertJson(['status_code' => 200]);
     }
 
+    public function testSearchBooks()
+    {
+        $response = $this->json('GET', '/api/v1/books/A Game');
+        $response->assertStatus(200);
+        $response->assertJson(['status_code' => 200]);
+    }
+
     public function testUpdateBook()
     {
         $response = $this->json('GET', '/api/v1/books');
@@ -62,5 +69,12 @@ class BookTest extends TestCase
         $delete->assertJson(['status_code' => 200]);
         $delete->assertJson(['status' => "success"]);
         $delete->assertJson(['message' => "The book $book->name was deleted successfully"]);
+    }
+
+    public function testExternalBooks()
+    {
+        $response = $this->json('GET', '/api/external-books/A Game of Thrones');
+        $response->assertStatus(200);
+        $response->assertJson(['status_code' => 200]);
     }
 }

@@ -79,9 +79,16 @@ class BookController extends Controller
      * @param  \App\Book  $book
      * @return \Illuminate\Http\Response
      */
-    public function show(Book $book)
+    public function show($search)
     {
-        return JSON(CODE_SUCCESS, $book);
+        $books = Book::query()
+            ->where('name', 'LIKE', "%{$search}%")
+            ->orWhere('country', 'LIKE', "%{$search}%")
+            ->orWhere('publisher', 'LIKE', "%{$search}%")
+            ->orWhere('release_date', 'LIKE', "%{$search}%")
+            ->get();
+   
+        return JSON(CODE_SUCCESS, $books);
     }
 
     /**
